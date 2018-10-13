@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/10/12 0012.
  */
@@ -31,6 +33,11 @@ public class TestUserDao {
     @Test
     public void testFindUserByAccount(){
         User user = userDao.findUserByAccount("aaa");
+        System.out.println(user);
+    }
+    @Test
+    public void testFindAllUsers(){
+        List<User> user = userDao.findAllUsers();
         System.out.println(user);
     }
 }

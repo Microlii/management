@@ -6,6 +6,8 @@ import com.iotek.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/10/12 0012.
  */
@@ -27,5 +29,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public void addUser(User user1) {
         userDao.addUser(user1);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userDao.findAllUsers();
     }
 }

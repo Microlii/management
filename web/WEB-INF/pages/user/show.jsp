@@ -10,6 +10,10 @@
     <title>Title</title>
 </head>
 <body>
-    success
+    <a href="#">反馈</a>
+    <a href="lookResume">查看简历</a>
+    <a href="#">修改密码</a>
+    <a href="#">其他</a>
+    <a href="#">退出</a>
 </body>
 </html>

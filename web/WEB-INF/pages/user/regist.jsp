@@ -7,25 +7,29 @@
     <script src="/js/jquery-1.7.2.js"></script>
     <script>
           $(function () {
-              $("#sub").click(function () {
-                  var account = $ ("#acc").val();
-                  var p1 = $("#p1").val();
-                  var p2 = $("#p2").val();
-                  if(account==""){
+              $("#acc").blur(function () {
+                  var acc = $("#acc").val();
+                  if(acc==""){
                       alert("账号不能为空")
-                      return false;
                   }
-                  if(p1==""){
-                      alert(("密码不能为空"))
-                      return false;
+
+                  for(var i=0;i<users.length;i++){
+                      if(acc==users[i].account){
+                          alert("账号已存在")
+                      }
                   }
-                  if(p2==""){
-                      alert("请确认密码")
-                      return false;
+              })
+              $("#p1").blur(function () {
+                  var pw1 = $("#p1").val();
+                  if(pw1==""){
+                      alert("密码不能为空")
                   }
-                  if(p1!=p2){
+              })
+              $("#p2").blur(function () {
+                  var pw1 = $("#p1").val();
+                  var pw2 = $("#p2").val();
+                  if(pw1!=pw2){
                       alert("两次输入密码不一致")
-                      return false;
                   }
               })
           })

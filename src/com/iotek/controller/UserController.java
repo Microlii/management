@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/10/12 0012.
  */
@@ -26,19 +28,19 @@ public class UserController {
         return "show";
     }
     @RequestMapping("registing")
-    public String registing(String account,String password){
-
+    public String registing(Model model){
+        List<User> users = userService.findAllUsers();
+        model.addAttribute("users",users);
         return "regist";
     }
     @RequestMapping("logined")
     public String logined(String account,String password,Model model){
-        User user = userService.findUserByAccount(account);
-        if (user!=null){
-            model.addAttribute("’À∫≈“—æ≠¥Ê‘⁄","str");
-            return "regist";
-        }
         User user1 = new User(account,password,0);
         userService.addUser(user1);
         return "redirect:/index.jsp";
+    }
+    @RequestMapping("lookResume")
+    public String lookResume(){
+        return "resumeView";
     }
 }

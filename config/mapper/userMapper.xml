@@ -20,7 +20,7 @@
     <select id="findUserByAccount" resultType="User">
         SELECT * FROM user where account = #{account}
     </select>
-    <select id="findAll" resultType="User">
-        select * from s_user
+    <select id="findAllUsers" resultType="User">
+        select * from user
     </select>
 </mapper>
