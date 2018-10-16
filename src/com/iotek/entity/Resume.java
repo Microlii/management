@@ -1,5 +1,7 @@
 package com.iotek.entity;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2018/10/12 0012.
  */
@@ -9,41 +11,70 @@ public class Resume {
     private String sex;
     private int age;
     private String eduction;
-    private String staatus;
-
-    public String getStaatus() {
-        return staatus;
-    }
-
-    public void setStaatus(String staatus) {
-        this.staatus = staatus;
-    }
-
+    private String status;
     private String tel;
     private String email;
-    private Position position;
+    private String dept;
+    private String job;
     private String expectSalary;
     private String hobby;
     private String profession;
-
+    private String delivery;
+    private Date deliveryTime;
+    private String look;
+    private String invite;
     public Resume() {
     }
 
-    @Override
-    public String toString() {
-        return "Resume{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", age=" + age +
-                ", eduction='" + eduction + '\'' +
-                ", tel='" + tel + '\'' +
-                ", email='" + email + '\'' +
-                ", position=" + position +
-                ", expectSalary='" + expectSalary + '\'' +
-                ", hobby='" + hobby + '\'' +
-                ", profession='" + profession + '\'' +
-                '}';
+    public Resume(String name, String sex, int age, String eduction, String status, String tel, String email, String dept, String job, String expectSalary, String hobby, String profession, String delivery, Date deliveryTime, String look, String invite) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.eduction = eduction;
+        this.status = status;
+        this.tel = tel;
+        this.email = email;
+        this.dept = dept;
+        this.job = job;
+        this.expectSalary = expectSalary;
+        this.hobby = hobby;
+        this.profession = profession;
+        this.delivery = delivery;
+        this.deliveryTime = deliveryTime;
+        this.look = look;
+        this.invite = invite;
+    }
+
+    public String getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
+    }
+
+    public Date getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(Date deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public String getLook() {
+        return look;
+    }
+
+    public void setLook(String look) {
+        this.look = look;
+    }
+
+    public String getInvite() {
+        return invite;
+    }
+
+    public void setInvite(String invite) {
+        this.invite = invite;
     }
 
     public Integer getId() {
@@ -86,6 +117,14 @@ public class Resume {
         this.eduction = eduction;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getTel() {
         return tel;
     }
@@ -102,12 +141,20 @@ public class Resume {
         this.email = email;
     }
 
-    public Position getPosition() {
-        return position;
+    public String getDept() {
+        return dept;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setDept(String dept) {
+        this.dept = dept;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 
     public String getExpectSalary() {
@@ -132,5 +179,61 @@ public class Resume {
 
     public void setProfession(String profession) {
         this.profession = profession;
+    }
+
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", age=" + age +
+                ", eduction='" + eduction + '\'' +
+                ", status='" + status + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", dept='" + dept + '\'' +
+                ", job='" + job + '\'' +
+                ", expectSalary='" + expectSalary + '\'' +
+                ", hobby='" + hobby + '\'' +
+                ", profession='" + profession + '\'' +
+                ", delivery='" + delivery + '\'' +
+                ", deliveryTime=" + deliveryTime +
+                ", look='" + look + '\'' +
+                ", invite='" + invite + '\'' +
+                '}';
+    }
+
+    public Resume(String name, String sex, int age, String eduction, String status, String tel, String email, String dept, String job, String expectSalary, String hobby, String profession) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.eduction = eduction;
+        this.status = status;
+        this.tel = tel;
+        this.email = email;
+        this.dept = dept;
+        this.job = job;
+        this.expectSalary = expectSalary;
+        this.hobby = hobby;
+        this.profession = profession;
+    }
+
+    public Resume(String name, String sex, int age, String eduction, String status, String tel, String email, String dept, String job, String expectSalary, String hobby, String profession, String delivery, String look, String invite) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.eduction = eduction;
+        this.status = status;
+        this.tel = tel;
+        this.email = email;
+        this.dept = dept;
+        this.job = job;
+        this.expectSalary = expectSalary;
+        this.hobby = hobby;
+        this.profession = profession;
+        this.delivery = delivery;
+        this.look = look;
+        this.invite = invite;
     }
 }

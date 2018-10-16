@@ -5,15 +5,6 @@
     <insert id="addUser" parameterType="User">
         insert into user(account,password,type) values(#{account},#{password},#{type})
     </insert>
-
-    <update id="update" parameterType="User">
-        update s_user set user_name=#{name},user_birthday=#{birthday},user_salary=#{salary} where user_id = #{id}
-    </update>
-
-    <delete id="delete" parameterType="int">
-        delete from s_user where user_id = #{id}
-    </delete>
-
     <select id="findUserByAccountAndPassword" resultType="User">
         select * from user where account = #{account} and password=#{password}
     </select>
@@ -23,4 +14,13 @@
     <select id="findAllUsers" resultType="User">
         select * from user
     </select>
+    <select id="findUserById" resultType="User">
+        select * from user WHERE id=#{id}
+    </select>
+    <update id="updateUser" parameterType="Int">
+        update user set resume = #{resume} WHERE  id =#{id}
+    </update>
+    <update id="updatedPassword" parameterType="User">
+        update user set password =#{password} WHERE id=#{id}
+    </update>
 </mapper>

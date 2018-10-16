@@ -7,16 +7,14 @@
     <script src="/js/jquery-1.7.2.js"></script>
     <script>
           $(function () {
+              var str = $("#cck").val()
+              if(str!=""){
+                  alert("str")
+              }
               $("#acc").blur(function () {
                   var acc = $("#acc").val();
                   if(acc==""){
                       alert("账号不能为空")
-                  }
-
-                  for(var i=0;i<users.length;i++){
-                      if(acc==users[i].account){
-                          alert("账号已存在")
-                      }
                   }
               })
               $("#p1").blur(function () {
@@ -32,14 +30,20 @@
                       alert("两次输入密码不一致")
                   }
               })
+              $(function () {
+                  $("#sub").click(function () {
+
+                  })
+              })
           })
       </script>
   </head>
   <body>
+        <input type="hidden" value="${requestScope.str}" id="cck">
         <form action="${pageContext.request.contextPath}/user/logined">
             账号<input type="text" name="account" id="acc"><br>
             密码<input type="password" name="password" id="p1"><br>
-            请重复密码<input type="password" name="password" id="p2"><br>
+            请重复密码<input type="password" name="password2" id="p2"><br>
             <input type="submit" id="sub">
         </form>
   </body>

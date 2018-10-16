@@ -15,8 +15,6 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring.xml")
-
-
 public class TestUserDao {
     @Autowired
     private UserDao userDao;
@@ -38,6 +36,11 @@ public class TestUserDao {
     @Test
     public void testFindAllUsers(){
         List<User> user = userDao.findAllUsers();
+        System.out.println(user);
+    }
+    @Test
+    public void testFindUserById(){
+        User user = userDao.findUserById(1);
         System.out.println(user);
     }
 }

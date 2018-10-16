@@ -10,16 +10,30 @@
           id=#{id}
     </select>
     <insert id="addResume" parameterType="Resume">
-        insert into resume (name,sex,age,eduction,tel,email,dept,job,status,expect_salary,hobby,profession)
-		values(#{name},#{sex},#{age},#{eduction},#{tel},#{email},#{dept},#{job},#{status},#{expectSalary},#{hobby},#{profession})
+        insert into resume (name,sex,age,eduction,tel,email,dept,job,status,expect_salary,hobby,profession,delivery,delivery_time,look,invite)
+		values(#{name},#{sex},#{age},#{eduction},#{tel},#{email},#{dept},#{job},#{status},#{expectSalary},#{hobby},#{profession},#{delivery},#{deliveryTime},#{look},#{invite})
     </insert>
     <update id="updeteResume" parameterType="Resume">
         update
               resume
         SET
-              name=#{name},sex=#{sex},age=#{age},eduction=#{eduction},tel=#{tel},email=#{email},dept=#{dept},job=#{job},status=#{status},expect_salary=#{expectSalary},hobby=#{hobby},profession=#{profession}
+              name=#{name},sex=#{sex},age=#{age},eduction=#{eduction},tel=#{tel},email=#{email},dept=#{dept},job=#{job},status=#{status},expect_salary=#{expectSalary},hobby=#{hobby},profession=#{profession},delivery=#{delivery},delivery_time=#{deliveryTime},look=#{look},invite=#{invite}
         WHERE
               id=#{id}
     </update>
-
+    <select id="findResumeByResume" resultType="Resume">
+        SELECT
+          *
+        FROM
+          resume WHERE
+        name=#{name} and sex=#{sex} and age=#{age} and eduction=#{eduction} and tel=#{tel} and email=#{email} and dept=#{dept} and job=#{job} and status=#{status} and expect_salary=#{expectSalary} and hobby=#{hobby} and profession=#{profession}
+    </select>
+    <select id="findResumesByDelivaryAndInvite" resultType="Resume">
+        SELECT
+          *
+        FROM
+          resume
+        WHERE
+          delivery=#{delivary} and invite=#{invite}
+    </select>
 </mapper>

@@ -6,6 +6,8 @@ import com.iotek.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/10/13 0013.
  */
@@ -27,4 +29,15 @@ public class ResumeServiceImpl implements ResumeService{
     public void updateResume(Resume resume) {
         resumeDao.updeteResume(resume);
     }
+
+    @Override
+    public Resume findResumeByResume(Resume resume) {
+        return resumeDao.findResumeByResume(resume);
+    }
+
+    @Override
+    public List<Resume> findResumesByDelivaryAndInvite(String delivary, String invite) {
+        return resumeDao.findResumesByDelivaryAndInvite(delivary,invite);
+    }
+
 }

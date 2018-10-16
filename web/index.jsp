@@ -8,14 +8,22 @@
 <html>
   <head>
     <title>登陆&注册</title>
+      <script>
+          $(function () {
+              var str = $("#check1").val()
+              if(str!=""){
+                  alert(str)
+              }
+          })
+      </script>
   </head>
   <body>
+        <input type="hidden" value="${requestScope.str}" id="check1">
         <form action="user/login" method="post">
             账号<input type="text" name="account"><br>
-            密码<input type="password" name="password"><br>
-            <c:if test="${requestScope.str}==null">
-                账号密码错误
-            </c:if>
+            密码<input type="password" name="password">
+            <span id="check"></span>
+            <br>
             <input type="submit"><br>
             <a href="user/registing">注册</a>
         </form>

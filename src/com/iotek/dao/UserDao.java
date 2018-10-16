@@ -15,4 +15,10 @@ public interface UserDao {
     User findUserByAccount(String account);
 
     List<User> findAllUsers();
+
+    User findUserById(Integer id);
+
+    void updateUser(@Param("resume") Integer id,@Param("id") int id1);
+
+    void updatedPassword(@Param("id") Integer id,@Param("password") String newPassword);
 }

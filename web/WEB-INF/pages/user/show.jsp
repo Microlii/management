@@ -7,13 +7,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <script>
+        $(function () {
+            $("#exit").click(function () {
+                var flag = confirm("是否退出？")
+                if(flag){
+
+                }else {
+                    return false;
+                }
+            })
+        })
+    </script>
 </head>
 <body>
     <a href="#">反馈</a>
-    <a href="lookResume">查看简历</a>
-    <a href="#">修改密码</a>
+    <a href="${pageContext.request.contextPath}/user/lookResume?id=${requestScope.user.id}">查看简历</a>
+    <a href="${pageContext.request.contextPath}/user/updatePassword?id=${requestScope.user.id}">修改密码</a>
     <a href="#">其他</a>
-    <a href="#">退出</a>
+    <a href="${pageContext.request.contextPath}/user/exit" id="exit">退出</a>
 </body>
 </html>

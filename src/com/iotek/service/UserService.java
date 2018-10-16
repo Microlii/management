@@ -16,4 +16,10 @@ public interface UserService {
     void addUser(User user1);
 
     List<User> findAllUsers();
+
+    User findUserById(Integer id);
+
+    void updateUser(Integer id, int id1);
+
+    void updatedPassword(Integer id, String newPassword);
 }
