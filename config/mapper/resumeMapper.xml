@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.dao.ResumeDao">
+    <select id="findResumeById" resultType="Resume">
+        SELECT
+          *
+        FROM
+         resume
+        WHERE
+          id=#{id}
+    </select>
+    <insert id="addResume" parameterType="Resume">
+        insert into resume (name,sex,age,eduction,tel,email,dept,job,status,expect_salary,hobby,profession)
+		values(#{name},#{sex},#{age},#{eduction},#{tel},#{email},#{dept},#{job},#{status},#{expectSalary},#{hobby},#{profession})
+    </insert>
+    <update id="updeteResume" parameterType="Resume">
+        update
+              resume
+        SET
+              name=#{name},sex=#{sex},age=#{age},eduction=#{eduction},tel=#{tel},email=#{email},dept=#{dept},job=#{job},status=#{status},expect_salary=#{expectSalary},hobby=#{hobby},profession=#{profession}
+        WHERE
+              id=#{id}
+    </update>
+
+</mapper>
