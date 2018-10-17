@@ -22,4 +22,6 @@ public interface UserService {
     void updateUser(Integer id, int id1);
 
     void updatedPassword(Integer id, String newPassword);
+
+    User findUserByResume(Integer id);
 }

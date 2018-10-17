@@ -1,14 +1,8 @@
 package com.iotek.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.iotek.entity.Dept;
-import com.iotek.entity.Job;
-import com.iotek.entity.Resume;
-import com.iotek.entity.User;
-import com.iotek.service.DeptService;
-import com.iotek.service.JobService;
-import com.iotek.service.ResumeService;
-import com.iotek.service.UserService;
+import com.iotek.entity.*;
+import com.iotek.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -19,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.xml.transform.Source;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -36,17 +33,40 @@ public class UserController {
     private JobService jobService;
     @Autowired
     private ResumeService resumeService;
+    @Autowired
+    private InterviewService interviewService;
+    @Autowired
+    private InformationService informationService;
 
     @RequestMapping("login")
     public String login(String account, String password, Model model){
         User user =userService.findUserByAccountAndPassword(account,password);
         if (user==null){
-            model.addAttribute("str","账号或密码错误");
+            model.addAttribute("str",111);
             return "redirect:/index.jsp";
         }else {
+            if (user.getType()==1){
+                return "staff";
+            }
+            if (user.getType()==2){
+                Information information = informationService.findInformationById(user.getInformation());
+                String hire ="未录用";
+                String interview = "参加面试";
+                String dept =information.getDept();
+                List<Interview> interviews = interviewService.findInterviewsByHireAndInterviewAndDept(hire,interview,dept);
+                System.out.println(interviews);
+                if (interviews.size()!=0){
+                    model.addAttribute("id",information.getId());
+                }
+                return "supervisor";
+            }
             if (user.getType()==3){
                 return "admin";
             }
+        }
+        Interview interview = interviewService.findInterviewByUId(user.getId());
+        if (interview!=null){
+            model.addAttribute("interview",interview);
         }
         model.addAttribute("user",user);
         return "show";
@@ -138,11 +158,62 @@ public class UserController {
         model.addAttribute("resumes",resumes);
         return ("showRes");
     }
-    @RequestMapping(value="look",produces = {"text/html;charset=utf-8"})
-    @ResponseBody()
-    public void look(Integer id, PrintWriter printWriter){
+    @RequestMapping("look")
+    public String look(Integer id,Model model){
         Resume resume = resumeService.findResumeById(id);
-        Object o = JSONArray.toJSONString(resume);
-        printWriter.print(o);
+        resume.setLook("已查看");
+        resumeService.updateResume(resume);
+        model.addAttribute("resume",resume);
+        System.out.println(resume);
+        return "showResume";
+    }
+    @RequestMapping("addInterview")
+    public String addInterview(Integer id, String time){
+        System.out.println(time);
+        Resume resume = resumeService.findResumeById(id);
+        resume.setInvite("已面试");
+        SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = spf.parse(time);
+            resumeService.updateResume(resume);
+            User user =userService.findUserByResume(resume.getId());
+            Interview interview = new Interview(resume.getDept(),resume.getJob(),date,user.getId(),resume.getId(),"未录用","不参加");
+            interviewService.addInterview(interview);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "admin";
+    }
+    @RequestMapping("lookInterview")
+    public String lookInterview(Integer id,Model model){
+        Interview interview = interviewService.findInterviewByUId(id);
+        model.addAttribute("interview",interview);
+        return "showInterview";
+    }
+    @RequestMapping("updateInterview")
+    public String updateInterview(Integer id){
+        System.out.println(id);
+        Interview interview = interviewService.findInterviewByUId(id);
+        System.out.println(interview);
+        interview.setInterview("参加面试");
+        interviewService.updateInterview(interview);
+        return "show";
+    }
+    @RequestMapping("interviews")
+    public String interviews(Integer id,Model model){
+        Information information = informationService.findInformationById(id);
+        String hire ="未录用";
+        String interview = "参加面试";
+        String dept =information.getDept();
+        List<Interview> interviews = interviewService.findInterviewsByHireAndInterviewAndDept(hire,interview,dept);
+        model.addAttribute("interviews",interviews);
+        return "showInterviews";
+    }
+    @RequestMapping("showdetails")
+    public String showdetails(Integer id,Model model){
+        Resume resume = resumeService.findResumeById(id);
+        model.addAttribute("resume",resume);
+        System.out.println(resume);
+        return "hire";
     }
 }

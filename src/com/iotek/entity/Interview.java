@@ -18,6 +18,17 @@ public class Interview {
     public Interview() {
     }
 
+    public Interview(int id, String dept, String job, Date interviewTime, int uId, int rId, String hire, String interview) {
+        this.id = id;
+        this.dept = dept;
+        this.job = job;
+        this.interviewTime = interviewTime;
+        this.uId = uId;
+        this.rId = rId;
+        this.hire = hire;
+        this.interview = interview;
+    }
+
     @Override
     public String toString() {
         return "Interview{" +

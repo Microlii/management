@@ -3,7 +3,7 @@
 <mapper namespace="com.iotek.dao.InterviewDao">
         <insert id="addInterview" parameterType="Interview">
             INSERT INTO interview
-            (dept,job,intrrview_time,u_id,r_id,hire,interview)
+            (dept,job,interview_time,u_id,r_id,hire,interview)
             VALUES
             (#{dept},#{job},#{interviewTime},#{uId},#{rId},#{hire},#{interview})
         </insert>
@@ -22,5 +22,21 @@
             interview
             WHERE
                 hire=#{hire} and interview =#{interview}
+        </select>
+        <update id="updateInterview" parameterType="int">
+            UPDATE
+                interview
+            SET
+                hire=#{hire},interview=#{interview}
+            WHERE
+                id=#{id}
+        </update>
+        <select id="findInterviewsByHireAndInterviewAndDept" resultType="Interview">
+            SELECT
+            *
+            FROM
+            interview
+            WHERE
+                hire=#{hire} and interview =#{interview} and dept=#{dept}
         </select>
 </mapper>

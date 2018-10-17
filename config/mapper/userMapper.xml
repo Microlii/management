@@ -23,4 +23,7 @@
     <update id="updatedPassword" parameterType="User">
         update user set password =#{password} WHERE id=#{id}
     </update>
+    <select id="findUserByResume" resultType="User">
+        SELECT * FROM user WHERE resume=#{id}
+    </select>
 </mapper>

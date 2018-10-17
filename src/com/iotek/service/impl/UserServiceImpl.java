@@ -51,4 +51,9 @@ public class UserServiceImpl implements UserService{
         userDao.updatedPassword(id,newPassword);
     }
 
+    @Override
+    public User findUserByResume(Integer id) {
+        return userDao.findUserByResume(id);
+    }
+
 }

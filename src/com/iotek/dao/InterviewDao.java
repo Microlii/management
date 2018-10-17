@@ -14,4 +14,8 @@ public interface InterviewDao {
     Interview findInerrviewByUId(int i);
 
     List<Interview> findInterviewByHireAndInterview(@Param("hire") String hire, @Param("interview")String interview);
+
+    void updateInterview(Interview interview);
+
+    List<Interview> findInterviewsByHireAndInterviewAndDept(@Param("hire")String hire, @Param("interview")String interview, @Param("dept")String dept);
 }

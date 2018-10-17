@@ -1,11 +1,7 @@
 package com.iotek.test;
 
-import com.iotek.dao.JobDao;
-import com.iotek.dao.DeptDao;
-import com.iotek.dao.ResumeDao;
-import com.iotek.entity.Dept;
-import com.iotek.entity.Job;
-import com.iotek.entity.Resume;
+import com.iotek.dao.*;
+import com.iotek.entity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +23,11 @@ public class TestDeptDao {
     private JobDao jobDao;
     @Autowired
     private ResumeDao resumeDao;
+    @Autowired
+    private InterviewDao interviewDao;
+    @Autowired
+    private InformationDao informationDao;
+
     @Test
     public void testFindAllDept(){
         List<Dept> depts = deptDao.findAllDept();
@@ -74,8 +75,43 @@ public class TestDeptDao {
     @Test
     public void testfindResumes(){
         String delivary = "已投递";
-        String invite = "未面试";
+        String invite = "已面试";
         List<Resume> resumes =resumeDao.findResumesByDelivaryAndInvite(delivary,invite);
         System.out.println(resumes);
+    }
+    @Test
+    public void testAddInterview(){
+        Interview interview = new Interview("aaa","aaa",new Date(),1,1,"录用","参加面试");
+        interviewDao.addInterview(interview);
+    }
+    @Test
+    public void testFindIntervierByUid(){
+        Interview interview = interviewDao.findInerrviewByUId(1);
+        System.out.println(interview);
+    }
+    @Test
+    public void testFindInterviewByHireAndInterview(){
+        String hire = "录用";
+        String interview = "参加面试";
+        List<Interview> interviews = interviewDao.findInterviewByHireAndInterview(hire,interview);
+        System.out.println(interviews);
+    }
+    @Test
+    public void testUpdateIntervew(){
+        Interview interview = new Interview(1,"aaa","aaa",new Date(),1,1,"录用1","参加面试");
+        interviewDao.updateInterview(interview);
+    }
+    @Test
+    public void testFindInformationById(){
+        Information information = informationDao.findInformationById(1);
+        System.out.println(information);
+    }
+    @Test
+    public void testFindInterviewByHireAndInterviewAndDept(){
+        String dept ="人事部";
+        String hire = "未录用";
+        String interview = "参加面试";
+        List<Interview> interviews = interviewDao.findInterviewsByHireAndInterviewAndDept(hire,interview,dept);
+        System.out.println(interviews);
     }
 }
