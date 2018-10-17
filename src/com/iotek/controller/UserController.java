@@ -138,4 +138,11 @@ public class UserController {
         model.addAttribute("resumes",resumes);
         return ("showRes");
     }
+    @RequestMapping(value="look",produces = {"text/html;charset=utf-8"})
+    @ResponseBody()
+    public void look(Integer id, PrintWriter printWriter){
+        Resume resume = resumeService.findResumeById(id);
+        Object o = JSONArray.toJSONString(resume);
+        printWriter.print(o);
+    }
 }

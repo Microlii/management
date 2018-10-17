@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.dao.InterviewDao">
+        <insert id="addInterview" parameterType="Interview">
+            INSERT INTO interview
+            (dept,job,intrrview_time,u_id,r_id,hire,interview)
+            VALUES
+            (#{dept},#{job},#{interviewTime},#{uId},#{rId},#{hire},#{interview})
+        </insert>
+        <select id="findInerrviewByUId" resultType="Interview">
+            SELECT
+              *
+            FROM
+              interview
+              WHERE
+              u_id =#{id}
+        </select>
+        <select id="findInterviewByHireAndInterview" resultType="Interview">
+            SELECT
+            *
+            FROM
+            interview
+            WHERE
+                hire=#{hire} and interview =#{interview}
+        </select>
+</mapper>
