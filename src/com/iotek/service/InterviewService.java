@@ -18,4 +18,8 @@ public interface InterviewService {
     List<Interview> findInterviewsByHireAndInterview(String hire, String interview);
 
     List<Interview> findInterviewsByHireAndInterviewAndDept(String hire, String interview, String dept);
+
+    Interview findInterviewByRId(Integer id);
+
+    void deleteByRid(Integer id);
 }

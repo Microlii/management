@@ -56,4 +56,9 @@ public class UserServiceImpl implements UserService{
         return userDao.findUserByResume(id);
     }
 
+    @Override
+    public void updateUserType(User user) {
+        userDao.updateUserType(user);
+    }
+
 }

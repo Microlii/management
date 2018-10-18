@@ -39,4 +39,15 @@
             WHERE
                 hire=#{hire} and interview =#{interview} and dept=#{dept}
         </select>
+        <select id="findInterviewByRId" resultType="Interview">
+            SELECT
+              *
+            FROM
+              interview
+            WHERE
+              r_id=#{id}
+        </select>
+        <delete id="deleteByRid" parameterType="int">
+            DELETE FROM interview WHERE r_id=#{id}
+        </delete>
 </mapper>

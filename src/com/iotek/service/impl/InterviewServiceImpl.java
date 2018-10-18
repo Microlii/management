@@ -39,4 +39,14 @@ public class InterviewServiceImpl implements InterviewService {
     public List<Interview> findInterviewsByHireAndInterviewAndDept(String hire, String interview, String dept) {
         return interviewDao.findInterviewsByHireAndInterviewAndDept(hire,interview,dept);
     }
+
+    @Override
+    public Interview findInterviewByRId(Integer id) {
+        return interviewDao.findInterviewByRId(id);
+    }
+
+    @Override
+    public void deleteByRid(Integer id) {
+        interviewDao.deleteByRid(id);
+    }
 }

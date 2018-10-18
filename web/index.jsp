@@ -12,7 +12,7 @@
           $(function () {
               var str = $("#check1").val()
               if(str!=""){
-                  alert(str)
+                  alert("账号或密码错误")
               }
           })
       </script>

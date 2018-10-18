@@ -23,4 +23,6 @@ public interface UserDao {
     void updatedPassword(@Param("id") Integer id,@Param("password") String newPassword);
 
     User findUserByResume(Integer id);
+
+    void updateUserType(User user);
 }

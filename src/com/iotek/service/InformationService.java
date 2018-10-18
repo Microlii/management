@@ -8,4 +8,9 @@ import com.iotek.entity.Information;
 public interface InformationService {
 
     Information findInformationById(Integer information);
+
+    void addInformation(Information information);
+
+    Information findInformationIformation(Information information);
+
 }

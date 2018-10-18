@@ -26,4 +26,7 @@
     <select id="findUserByResume" resultType="User">
         SELECT * FROM user WHERE resume=#{id}
     </select>
+    <update id="updateUserType" parameterType="User">
+        update user set type =#{type},information=#{information} WHERE id=#{id}
+    </update>
 </mapper>

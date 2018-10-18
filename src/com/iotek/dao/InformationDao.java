@@ -7,4 +7,10 @@ import com.iotek.entity.Information;
  */
 public interface InformationDao {
     Information findInformationById(Integer Id);
+
+    void addInformation(Information information);
+
+    Information findInformationIformation(Information information);
+
+
 }

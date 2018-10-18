@@ -82,7 +82,6 @@
                 <td>
                     ${requestScope.resume.sex eq '男'?'<input type="radio" name="sex" value="男" checked="checked"/>男':'<input type="radio" name="sex" value="男"/>男'}
                     ${requestScope.resume.sex eq '女'?'<input type="radio" name="sex" value="女" checked="checked"/>女':'<input type="radio" name="sex" value="女"/>女'}
-
                 </td>
             </tr>
             <tr>

@@ -48,4 +48,11 @@ public class TestUserDao {
         User user = userDao.findUserByResume(24);
         System.out.println(user);
     }
+    @Test
+    public void testFindU(){
+        User user = userDao.findUserById(1);
+        user.setType(1);
+        user.setInformation(9);
+        userDao.updateUserType(user);
+    }
 }

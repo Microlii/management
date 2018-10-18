@@ -20,7 +20,7 @@
 <body>
     <a href="#">上班签到</a><br>
     <a href="#">下班签到</a><br>
-    <a href="#">个人信息</a><br>
+    <a href="${pageContext.request.contextPath}/user/showInformation?id=${requestScope.user.id}">个人信息</a><br>
     <a href="#">我的考勤</a><br>
     <a href="#">修改密码</a><br>
     <a href="#">我的奖惩</a><br>

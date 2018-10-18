@@ -114,4 +114,25 @@ public class TestDeptDao {
         List<Interview> interviews = interviewDao.findInterviewsByHireAndInterviewAndDept(hire,interview,dept);
         System.out.println(interviews);
     }
+    @Test
+    public void testFindInterviewByRID(){
+        Interview interview = interviewDao.findInterviewByRId(24);
+        System.out.println(interview);
+    }
+    @Test
+    public void testAddInformation(){
+        Information information = new Information("aaa","a",1,"aa","222","sss","ddd","ddd","ddd",new Date(),0.0);
+        informationDao.addInformation(information);
+    }
+    @Test
+    public void testfindInformation(){
+        Information information = new Information("aaa","a",1,"aa","222","sss","ddd","ddd","ddd",new Date(),0.0);
+        Information information1 =informationDao.findInformationIformation(information);
+        System.out.println(information1);
+    }
+    @Test
+    public void testDeleteByRid(){
+        interviewDao.deleteByRid(1);
+    }
+
 }

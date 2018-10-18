@@ -46,6 +46,7 @@ public class UserController {
             return "redirect:/index.jsp";
         }else {
             if (user.getType()==1){
+                model.addAttribute("user",user);
                 return "staff";
             }
             if (user.getType()==2){
@@ -94,8 +95,8 @@ public class UserController {
             model.addAttribute("str","ÒÑ´æÔÚµÄÕËºÅ");
             return "regist";
         }
-        User user1 = new User(account,password,0);
-        userService.addUser(user1);
+        user.setType(0);
+        userService.addUser(user);
         return "redirect:/index.jsp";
     }
     @RequestMapping("lookResume")
@@ -215,5 +216,27 @@ public class UserController {
         model.addAttribute("resume",resume);
         System.out.println(resume);
         return "hire";
+    }
+    @RequestMapping("hired")
+    public String hired(Integer id){
+        Resume resume = resumeService.findResumeById(id);
+        System.out.println(resume);
+        Information information = new Information(resume.getName(),resume.getSex(),resume.getAge(),resume.getEduction(),resume.getTel(),resume.getEmail(),resume.getDept(),resume.getJob(),resume.getStatus(),new Date(),0.0);
+        informationService.addInformation(information);
+        Information information1 = informationService.findInformationIformation(information);
+        User user = userService.findUserByResume(id);
+        user.setType(1);
+        user.setInformation(information1.getId());
+        userService.updateUserType(user);
+        User user1 = userService.findUserByResume(id);
+        System.out.println(user1);
+        interviewService.deleteByRid(id);
+        return "supervisor";
+    }
+    @RequestMapping("showInformation")
+    public String showInformation(Integer id,Model model){
+        Information information = informationService.findInformationById(userService.findUserById(id).getInformation());
+        model.addAttribute("information",information);
+        return "information";
     }
 }

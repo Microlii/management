@@ -17,11 +17,16 @@
                     return false;
                 }
             })
+            var id = $("#interview").val();
+            if(id!=""){
+                alert("你有一份新的面试通知请注意查看")
+            }
         })
     </script>
 </head>
 <body>
-    <a href="#">反馈</a>
+    <input type="hidden" value="${requestScope.interview.id}" id="interview">
+    <a href="${pageContext.request.contextPath}/user/lookInterview?id=${requestScope.user.id}">反馈</a>
     <a href="${pageContext.request.contextPath}/user/lookResume?id=${requestScope.user.id}">查看简历</a>
     <a href="${pageContext.request.contextPath}/user/updatePassword?id=${requestScope.user.id}">修改密码</a>
     <a href="#">其他</a>

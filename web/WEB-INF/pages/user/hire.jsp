@@ -25,7 +25,7 @@
     </script>
 </head>
 <body>
-        <form action="${pageContext.request.contextPath}/user/hire?id=${requestScope.resume.id}" method="post">
+        <form action="${pageContext.request.contextPath}/user/hired?id=${requestScope.resume.id}" method="post">
             <table cellpadding="2px" cellspacing="2px" border="2px">
                 <tr>
                     <td>姓名</td>

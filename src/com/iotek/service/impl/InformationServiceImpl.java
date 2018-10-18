@@ -18,4 +18,16 @@ public class InformationServiceImpl implements InformationService {
     public Information findInformationById(Integer information) {
         return informationDao.findInformationById(information);
     }
+
+    @Override
+    public void addInformation(Information information) {
+        informationDao.addInformation(information);
+    }
+
+    @Override
+    public Information findInformationIformation(Information information) {
+        return informationDao.findInformationIformation(information);
+    }
+
+
 }
