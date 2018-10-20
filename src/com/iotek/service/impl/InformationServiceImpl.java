@@ -29,5 +29,10 @@ public class InformationServiceImpl implements InformationService {
         return informationDao.findInformationIformation(information);
     }
 
+    @Override
+    public void updateInformation(Information information) {
+        informationDao.updateInformation(information);
+    }
+
 
 }

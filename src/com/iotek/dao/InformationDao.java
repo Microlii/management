@@ -13,4 +13,5 @@ public interface InformationDao {
     Information findInformationIformation(Information information);
 
 
+    void updateInformation(Information information);
 }

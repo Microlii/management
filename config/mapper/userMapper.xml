@@ -29,4 +29,7 @@
     <update id="updateUserType" parameterType="User">
         update user set type =#{type},information=#{information} WHERE id=#{id}
     </update>
+    <select id="findUserByInformation" resultType="User">
+        SELECT * FROM user WHERE information=#{id}
+    </select>
 </mapper>

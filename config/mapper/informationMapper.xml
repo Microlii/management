@@ -23,5 +23,7 @@
         WHERE
           name=#{name} and sex=#{sex} and eduction=#{eduction} and tel=#{tel} and email=#{email} and dept=#{dept} and job=#{job} and status=#{status} and name=#{name} and salary=#{salary}
     </select>
-
+    <update id="updateInformation" parameterType="int">
+        UPDATE information set name=#{name},sex=#{sex},eduction=#{eduction},tel=#{tel},email=#{email},status=#{status},age=#{age},salary=#{salary} WHERE id=#{id}
+    </update>
 </mapper>

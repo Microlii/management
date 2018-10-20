@@ -18,14 +18,21 @@
             if(s!=""){
                 alert("你有新的面试通知请注意查看")
             }
+            $("#interview").click(function () {
+                var s = $("#hid").val();
+                if(s==""){
+                    alert("暂时没有新的应聘信息")
+                    return false;
+                }
+            })
         })
     </script>
 </head>
 <body>
     <input type="hidden" value="${requestScope.id}" id="hid">
-    <a href="${pageContext.request.contextPath}/user/interviews?id=${requestScope.id}">面试管理</a><br>
+    <a href="${pageContext.request.contextPath}/user/interviews?id=${requestScope.id}" id="interview">面试管理</a><br>
     <a href="#">培训管理</a><br>
     <a href="#">绩效管理</a><br>
-    <a href="#" id="exit">退出</a><br>
+    <a href="${pageContext.request.contextPath}/user/exit" id="exit">退出</a><br>
 </body>
 </html>

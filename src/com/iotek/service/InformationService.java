@@ -13,4 +13,5 @@ public interface InformationService {
 
     Information findInformationIformation(Information information);
 
+    void updateInformation(Information information);
 }

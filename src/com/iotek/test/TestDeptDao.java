@@ -27,6 +27,8 @@ public class TestDeptDao {
     private InterviewDao interviewDao;
     @Autowired
     private InformationDao informationDao;
+    @Autowired
+    private PunchDao punchDao;
 
     @Test
     public void testFindAllDept(){
@@ -134,5 +136,22 @@ public class TestDeptDao {
     public void testDeleteByRid(){
         interviewDao.deleteByRid(1);
     }
+    @Test
+    public void testAddPunch(){
+        Punch punch = new Punch(1,1,1,1,new Date());
+        punchDao.addPunch(punch);
+    }
+    @Test
+    public void testfindPunch(){
+        Punch punch = punchDao.findPunchByUIdAndYearAndMonthAndDay(1,1,1,1);
+        System.out.println(punch);
+    }
+    @Test
+    public void testUpdate(){
+        Punch punch = punchDao.findPunchByUIdAndYearAndMonthAndDay(1,1,1,1);
+        punch.setOfTime(new Date());
+        punch.setEarly("2");
+        punchDao.updatePunch(punch);
 
+    }
 }

@@ -26,4 +26,6 @@ public interface UserService {
     User findUserByResume(Integer id);
 
     void updateUserType(User user);
+
+    User findUserByInformation(Integer id);
 }

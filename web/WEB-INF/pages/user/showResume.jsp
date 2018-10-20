@@ -56,7 +56,7 @@
                 </tr>
             </table>
                 <button type="submit" id="sub">面试</button>
-                <a href="${pageContext.request.contextPath}/user/showResumes">返回</a>
+                <button><a href="${pageContext.request.contextPath}/user/showResumes">返回</a></button>
         </form>
 </body>
 </html>

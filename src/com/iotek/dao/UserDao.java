@@ -25,4 +25,6 @@ public interface UserDao {
     User findUserByResume(Integer id);
 
     void updateUserType(User user);
+
+    User findUserByInformation(Integer id);
 }

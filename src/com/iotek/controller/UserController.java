@@ -3,20 +3,18 @@ package com.iotek.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.iotek.entity.*;
 import com.iotek.service.*;
+import com.iotek.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.xml.transform.Source;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -37,6 +35,8 @@ public class UserController {
     private InterviewService interviewService;
     @Autowired
     private InformationService informationService;
+    @Autowired
+    private PunchService punchService;
 
     @RequestMapping("login")
     public String login(String account, String password, Model model){
@@ -47,6 +47,20 @@ public class UserController {
         }else {
             if (user.getType()==1){
                 model.addAttribute("user",user);
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month =calendar.get(Calendar.MONTH);
+                int day =calendar.get(Calendar.DATE);
+                Punch punch = punchService.findPunchByUIdAndYearAndMonthAndDay(user.getId(),year,month,day);
+                if (punch==null){
+                    model.addAttribute("date",0);
+                }else {
+                    if (punch.getOfTime()==null){
+                        model.addAttribute("date",1);
+                    }else {
+                        model.addAttribute("date",2);
+                    }
+                }
                 return "staff";
             }
             if (user.getType()==2){
@@ -235,8 +249,59 @@ public class UserController {
     }
     @RequestMapping("showInformation")
     public String showInformation(Integer id,Model model){
+        System.out.println(id);
         Information information = informationService.findInformationById(userService.findUserById(id).getInformation());
         model.addAttribute("information",information);
         return "information";
+    }
+    @RequestMapping("back")
+    public String back(Integer id,Model model){
+        System.out.println(id);
+        User user = userService.findUserByInformation(id);
+        System.out.println(user);
+        model.addAttribute("user",user);
+        return "staff";
+    }
+    @RequestMapping("updateInfromation")
+    public String updateInfromation(Information information,Integer id){
+        System.out.println(id);
+        System.out.println(information);
+        informationService.updateInformation(information);
+            return "success";
+    }
+    @RequestMapping("addPunch")
+    public String addPunch(Integer id,Model model){
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month =calendar.get(Calendar.MONTH);
+        int day =calendar.get(Calendar.DATE);
+        Punch punch = new Punch(id,year,month,day,date);
+        String late =new TimeUtil().compareLate();
+        String comption = new TimeUtil().completion();
+        punch.setLate(late);
+        punch.setCompetion(comption);
+        punchService.addPunch(punch);
+        User user = userService.findUserById(id);
+        model.addAttribute("user",user);
+        model.addAttribute("date",1);
+        return "staff";
+    }
+    @RequestMapping("addOfTime")
+    public String addOfTime(Integer id,Model model){
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month =calendar.get(Calendar.MONTH);
+        int day =calendar.get(Calendar.DATE);
+        Punch punch = punchService.findPunchByUIdAndYearAndMonthAndDay(id,year,month,day);
+        punch.setOfTime(date);
+        String early = new TimeUtil().compareEarly();
+        punch.setEarly(early);
+        punchService.updatePunch(punch);
+        User user = userService.findUserById(id);
+        model.addAttribute("user",user);
+        model.addAttribute("date",2);
+        return "staff";
     }
 }

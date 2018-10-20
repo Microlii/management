@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.dao.PunchDao">
+    <insert id="addPunch" parameterType="Punch">
+        INSERT
+              INTO  punch(u_id,year,month,day,work_time,of_time,late,early,competion)
+        VALUES(#{uId},#{year},#{month},#{day},#{workTime},#{ofTime},#{late},#{early},#{competion})
+    </insert>
+    <select id="findPunchByUIdAndYearAndMonthAndDay" resultType="Punch">
+        SELECT * FROM punch WHERE u_id=#{uId} and year=#{year} and month=#{month} and day=#{day}
+    </select>
+    <update id="updatePunch" parameterType="Punch">
+        UPDATE punch SET of_time=#{ofTime},early=#{early} WHERE id=#{id}
+    </update>
+</mapper>

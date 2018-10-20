@@ -55,4 +55,9 @@ public class TestUserDao {
         user.setInformation(9);
         userDao.updateUserType(user);
     }
+    @Test
+    public void testFindUserByInformation(){
+        User user = userDao.findUserByInformation(4);
+        System.out.println(user);
+    }
 }
